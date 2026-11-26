@@ -2,13 +2,13 @@
  "title": "Gambit Evans",
  "step": 0.5,
  "scores": {
-  "simplicite": 0.5519914547509545,
-  "rugosite": 4.753087646392792,
+  "simplicite": 0.5519914547509551,
+  "rugosite": 3.1504402202353083,
   "unissons": 0.5
  },
  "z": {
-  "simplicite": 1.0098423731288906,
-  "rugosite": -1.090441126856695
+  "simplicite": 1.009842373128893,
+  "rugosite": -1.0153615745361435
  },
  "events": [
   {
@@ -23,7 +23,7 @@
    "check": false,
    "mate": false,
    "t": 0.0,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 1,
@@ -37,7 +37,7 @@
    "check": false,
    "mate": false,
    "t": 0.5,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 2,
@@ -51,7 +51,7 @@
    "check": false,
    "mate": false,
    "t": 1.0,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 3,
@@ -65,7 +65,7 @@
    "check": false,
    "mate": false,
    "t": 1.5,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 4,
@@ -79,7 +79,7 @@
    "check": false,
    "mate": false,
    "t": 2.0,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   },
   {
    "ply": 5,
@@ -93,7 +93,7 @@
    "check": false,
    "mate": false,
    "t": 2.5,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   },
   {
    "ply": 6,
@@ -107,7 +107,7 @@
    "check": false,
    "mate": false,
    "t": 3.0,
-   "f_dom": 113.14
+   "f_dom": 257.13
   }
  ]
 }

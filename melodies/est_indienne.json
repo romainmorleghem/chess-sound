@@ -2,13 +2,13 @@
  "title": "Est-indienne",
  "step": 0.5,
  "scores": {
-  "simplicite": 0.347921341102409,
-  "rugosite": 6.455477082410136,
+  "simplicite": 0.3479213411024099,
+  "rugosite": 4.233503268945247,
   "unissons": 0.2857142857142857
  },
  "z": {
-  "simplicite": 0.05765629776391733,
-  "rugosite": -0.0963503184945651
+  "simplicite": 0.057656297763921276,
+  "rugosite": -0.0495691304329
  },
  "events": [
   {
@@ -23,7 +23,7 @@
    "check": false,
    "mate": false,
    "t": 0.0,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 1,
@@ -37,7 +37,7 @@
    "check": false,
    "mate": false,
    "t": 0.5,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 2,
@@ -51,7 +51,7 @@
    "check": false,
    "mate": false,
    "t": 1.0,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 3,
@@ -65,7 +65,7 @@
    "check": false,
    "mate": false,
    "t": 1.5,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 4,
@@ -79,7 +79,7 @@
    "check": false,
    "mate": false,
    "t": 2.0,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 5,
@@ -93,7 +93,7 @@
    "check": false,
    "mate": false,
    "t": 2.5,
-   "f_dom": 714.97
+   "f_dom": 1624.93
   },
   {
    "ply": 6,
@@ -107,7 +107,7 @@
    "check": false,
    "mate": false,
    "t": 3.0,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 7,
@@ -121,7 +121,7 @@
    "check": false,
    "mate": false,
    "t": 3.5,
-   "f_dom": 218.44
+   "f_dom": 496.46
   }
  ]
 }

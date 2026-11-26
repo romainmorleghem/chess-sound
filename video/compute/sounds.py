@@ -15,7 +15,7 @@ OUT = ROOT / "media" / "sounds"
 
 def tone(f, dur=1.6, amp=1.0):
     t = np.arange(int(dur * SR)) / SR
-    return amp * np.sin(2 * np.pi * f * t) * np.exp(-t / (1.6 * 220 / f)) * np.minimum(1, t / 0.005)
+    return amp * np.sin(2 * np.pi * f * t) * np.exp(-t / (1.6 * synth.F0 / f)) * np.minimum(1, t / 0.005)
 
 
 def main():
@@ -30,10 +30,10 @@ def main():
         save(OUT / f"quiz{k}.wav", Instrument.cache(p).note("e4", dur=2.2))
     # string harmonics and single modes of the knight (pure tones)
     for k in range(1, 4):
-        save(OUT / f"string{k}.wav", tone(196 * k))
+        save(OUT / f"string{k}.wav", tone(392 * k))
     w = np.linalg.eigvalsh(synth.laplacian(synth.adjacency("N")).astype(float))
     for k in (1, 3, 10, 63):
-        save(OUT / f"Nmode{k}.wav", tone(220 * np.sqrt(w[k]), dur=2.0))
+        save(OUT / f"Nmode{k}.wav", tone(synth.F0 * np.sqrt(w[k]), dur=2.0))
     # melodies (same rendering as src/melody.py)
     for key in ("italienne", "gambit_evans"):
         save(OUT / f"mel_{key}.wav", render(events(OPENINGS[key][1]), step=0.5))

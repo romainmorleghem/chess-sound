@@ -20,7 +20,7 @@ import re
 from pathlib import Path
 
 from manim import Scene, MovingCameraScene, Tex, FadeIn, FadeTransform, UL
-from common.style import MUTED
+from common.style import MUTED, FG
 
 VOICE = "af_heart"
 SPEED = 1.0                  # Kokoro speed factor (1.0 = natural pace)
@@ -90,8 +90,22 @@ class NarrationMixin:
         if left > 0.05:
             self.wait(left)
 
-    def chapter(self, label, animate=True):
+    def chapter(self, label, animate=True, card=True):
         tag = Tex(label, font_size=26, color=MUTED).to_corner(UL, buff=0.35)
+        if card and animate and "·" in label:
+            from manim import VGroup, Line, Write, Create, FadeOut, DOWN, LEFT, RIGHT
+            from common.style import BAND
+            num, title = [s.strip() for s in label.split("·", 1)]
+            big = VGroup(Tex(num, font_size=110, color=BAND), Tex(title, font_size=56, color=FG)).arrange(DOWN, buff=0.35)
+            bar = Line(LEFT * 1.6, RIGHT * 1.6, color=BAND, stroke_width=3).next_to(big, DOWN, buff=0.35)
+            if self.chapter_tag is not None:
+                self.play(FadeOut(self.chapter_tag), run_time=0.3)
+                self.chapter_tag = None
+            self.play(Write(big), Create(bar), run_time=1.1)
+            self.wait(0.6)
+            self.play(FadeOut(bar), FadeTransform(big, tag), run_time=0.8)
+            self.chapter_tag = tag
+            return
         if self.chapter_tag is None:
             if animate:
                 self.play(FadeIn(tag), run_time=0.6)

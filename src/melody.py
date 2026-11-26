@@ -13,7 +13,7 @@ import chess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "data"))
-from synth import Instrument, SR, save
+from synth import Instrument, SR, save, F0
 from graphs import parse
 
 LETTER = {chess.PAWN: "P", chess.KNIGHT: "N", chess.BISHOP: "B", chess.ROOK: "R", chess.QUEEN: "Q", chess.KING: "K"}
@@ -60,7 +60,7 @@ def dominant(ev):
 
 
 def _decay(f, t, amp=1.0, tau=None):
-    tau = tau or 1.6 * 220 / f
+    tau = tau or 1.6 * F0 / f
     return amp * np.sin(2 * np.pi * f * t) * np.exp(-t / tau) * np.minimum(1, t / 0.004)
 
 
@@ -82,7 +82,7 @@ def render(evs, step=0.45, tail=2.2, pan=0.6):
         ev["f_dom"] = round(dominant(ev), 2)
     if evs and evs[-1]["mate"]:  # résolution : accord majeur juste (1, 5/4, 3/2, 2) sur la note du mat
         f = evs[-1]["f_dom"]
-        while f > 440:
+        while f > 2 * F0:
             f /= 2
         t2 = np.arange(int(2.5 * SR)) / SR
         chord = sum(_decay(f * r, t2, amp=0.1, tau=2.0) for r in (1, 5 / 4, 3 / 2, 2))

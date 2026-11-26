@@ -1,7 +1,7 @@
 """s09 · Openings and famous games as melodies, with the board playing the moves in sync."""
-from _common import Narrated, GameBoard, snd, FG, MUTED, BAND, UP, DOWN, LEFT, RIGHT
+from _common import Narrated, GameBoard, MelodyPlot, snd, FG, MUTED, BAND, UP, DOWN, LEFT, RIGHT
 from manim import FadeIn, FadeOut, Text, VGroup, Tex
-from melody import san_list
+from melody import san_list, events, dominant
 from games import OPENINGS, GAMES
 
 
@@ -11,13 +11,19 @@ class Melodies(Narrated):
         t = VGroup(Text(title, font_size=34, color=FG), Text(sub, font_size=24, color=MUTED, line_spacing=1.1)
                    ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
         t.next_to(gb, RIGHT, buff=0.7).align_to(gb, UP).shift(0.3 * DOWN)
-        self.play(FadeIn(gb), FadeIn(t), run_time=0.6)
+        evs = events(" ".join(sans))
+        for e in evs:
+            e["f_dom"] = dominant(e)
+        plot = MelodyPlot(evs, step, width=4.6, height=2.6)
+        plot.next_to(gb, RIGHT, buff=0.7).align_to(gb, DOWN).shift(0.2 * UP)
+        self.play(FadeIn(gb), FadeIn(t), FadeIn(plot.box), run_time=0.6)
+        self.add(plot)
         self.say(intro)
-        anim, T, lead = gb.play(sans, step)
+        anim, T, lead = gb.play(sans, step, plot=plot)
         self.add_sound(snd(f"mel_{key}"), time_offset=lead)
         self.play(anim, run_time=T + 1.5)
         self.wait(0.8)
-        self.play(FadeOut(gb), FadeOut(t), run_time=0.6)
+        self.play(FadeOut(gb), FadeOut(t), FadeOut(plot), run_time=0.6)
 
     def construct(self):
         self.chapter("9 · Games as melodies")

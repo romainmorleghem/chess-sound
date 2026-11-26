@@ -2,7 +2,7 @@
 
 Chaque pièce d'échecs devient un instrument : 64 billes (les cases) reliées par des élastiques
 (un élastique entre deux cases si la pièce passe de l'une à l'autre en un coup, sur échiquier vide).
-Modes propres du laplacien L = D − A → fréquences f = 220·√λ Hz → sons, puis mélodies d'ouvertures et de parties célèbres.
+Modes propres du laplacien L = D − A → fréquences f = 500·√λ Hz → sons, puis mélodies d'ouvertures et de parties célèbres.
 
 | Fichier | Rôle |
 |---|---|
@@ -30,7 +30,7 @@ Beauté musicale, deux scores entre notes successives, comparés à 300 parties 
 Voix off anglaise Kokoro-82M `af_heart` (`video/common/narrative.py`, modèles dans `~/.cache/kokoro`, cf. ising).
 Plan : `video/storyboard.md`. Sons des scènes : `python3 video/compute/sounds.py` → `media/sounds/`.
 ```bash
-cd video && python3 render.py          # aperçu 480p  -> media/video/chess_sound_480p15.mp4 (≈ 5 min de rendu)
+cd video && python3 render.py          # aperçu 480p  -> media/video/chess_sound_480p15.mp4 (≈ 3 min de rendu)
 python3 render.py -q f                 # final 1080p30 -> media/video/chess_sound_1080p30.mp4
 python3 render.py --only s09           # re-rendre une séquence puis réassembler
 ```

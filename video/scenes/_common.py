@@ -45,7 +45,10 @@ class Board(VGroup):
                         fill_color=LIGHT_SQ if (f + r) % 2 else DARK_SQ)
             sq.move_to([(f - 3.5) * size, (r - 3.5) * size, 0])
             self.squares.add(sq)
-        self.add(self.squares)
+        from manim import RoundedRectangle
+        self.frame = RoundedRectangle(corner_radius=0.06, width=8 * size + 0.16, height=8 * size + 0.16,
+                                      stroke_color=MUTED, stroke_width=2, stroke_opacity=0.7)
+        self.add(self.frame, self.squares)
         if labels:
             lab = VGroup()
             for f in range(8):
@@ -92,7 +95,7 @@ def glyph(p, white=True, size=None, color=None):
     return t
 
 
-def bands(board, piece, sources=None, color=BAND, width=2.0, opacity=0.8):
+def bands(board, piece, sources=None, color=BAND, width=2.0, opacity=0.8, glow=True):
     """Rubber bands of `piece` from the given squares (default: all edges, once)."""
     A = adjacency(piece)
     g = VGroup()
@@ -106,7 +109,10 @@ def bands(board, piece, sources=None, color=BAND, width=2.0, opacity=0.8):
             fj, rj = coords(int(j))
             straight = piece in "NKP" or max(abs(fi - fj), abs(ri - rj)) == 1
             m = Line(p, q) if straight else ArcBetweenPoints(p, q, angle=0.35)
-            g.add(m.set_stroke(color, width, opacity))
+            m.set_stroke(color, width, opacity)
+            if glow:
+                g.add(m.copy().set_stroke(color, width * 4, opacity * 0.18))
+            g.add(m)
     return g
 
 
@@ -136,7 +142,7 @@ class GameBoard(VGroup):
             self.add(g)
         self.caption = Text(" ", font_size=26, color=FG)
 
-    def play(self, sans, step, lead=0.18):
+    def play(self, sans, step, lead=0.18, plot=None):
         """Animation of length len(sans)*step + 1; returns (animation, run_time)."""
         b = chess.Board()
         owner = dict(self.pieces)          # square -> glyph
@@ -187,22 +193,25 @@ class GameBoard(VGroup):
                 g.set_opacity(1.0 if d is None or t < d else max(0.0, 1 - (t - d) / 0.15))
             cur = [mk for mk in marks if mk[0] - lead <= t]
             if cur:
-                _, f0, f1 = cur[-1]
-                self.hl_from.move_to(self.board.pos(f0)).set_fill(opacity=0.25)
-                self.hl_to.move_to(self.board.pos(f1)).set_fill(opacity=0.45)
+                tk, f0, f1 = cur[-1]
+                flash = np.exp(-max(t - tk, 0) / 0.25)
+                self.hl_from.move_to(self.board.pos(f0)).set_fill(opacity=0.2)
+                self.hl_to.move_to(self.board.pos(f1)).set_fill(opacity=0.35 + 0.45 * flash)
+            if plot is not None:
+                plot.at(t)
         return UpdateFromAlphaFunc(self, upd, rate_func=linear), T, lead
 
 
 class Spectrum(VGroup):
-    """Log-frequency axis (100–1300 Hz) with vertical lines."""
+    """Log-frequency axis (220–3000 Hz) with vertical lines."""
 
-    def __init__(self, width=10.0, fmin=100, fmax=1300):
+    def __init__(self, width=10.0, fmin=220, fmax=3000):
         super().__init__()
         self.w, self.fmin, self.fmax = width, fmin, fmax
         self.axis = Line(LEFT * width / 2, RIGHT * width / 2, color=MUTED, stroke_width=2)
         self.add(self.axis)
         self.ticks = VGroup()
-        for f in (110, 220, 440, 880):
+        for f in (250, 500, 1000, 2000):
             x = self.x(f)
             self.ticks.add(Line([x, -0.08, 0], [x, 0.08, 0], color=MUTED, stroke_width=2),
                            Text(f"{f} Hz", font_size=16, color=MUTED).move_to([x, -0.3, 0]))
@@ -244,3 +253,40 @@ def strike(scene, sound, pos=None, dur=2.2, color=BAND, also=()):
             scene.remove(c)
     else:
         scene.wait(dur)
+
+
+class MelodyPlot(VGroup):
+    """Melody line: x = time, y = log(dominant frequency); dots coloured by piece, shown as they sound."""
+
+    def __init__(self, evs, step, width=5.2, height=2.6, fmin=250, fmax=3000):
+        super().__init__()
+        from manim import Rectangle as R
+        self.box = R(width=width, height=height, stroke_color=MUTED, stroke_width=1, stroke_opacity=0.5)
+        self.add(self.box)
+        n = max(len(evs), 2)
+        x0, y0 = -width / 2 + 0.15, -height / 2 + 0.15
+
+        def xy(k, f):
+            return np.array([x0 + (width - 0.3) * k / (n - 1),
+                             y0 + (height - 0.3) * np.log(f / fmin) / np.log(fmax / fmin), 0])
+        self.times = [k * step for k in range(len(evs))]
+        self.dots, self.segs = VGroup(), VGroup()
+        for k, e in enumerate(evs):
+            p = xy(k, e["f_dom"])
+            d = Dot(p, radius=0.06 if not e["capture"] else 0.1, color=PIECE_COLOR[e["piece"]])
+            if e["color"] == "b":
+                d.set_fill(BG).set_stroke(PIECE_COLOR[e["piece"]], 2.5)
+            self.dots.add(d)
+            if k:
+                self.segs.add(Line(self.dots[k - 1].get_center(), p, color=MUTED, stroke_width=1.2))
+        for lab, f in (("500 Hz", 500), ("1000", 1000), ("2000", 2000)):
+            self.add(Text(lab, font_size=14, color=MUTED).move_to(xy(0, f) + np.array([-0.5, 0, 0])))
+        self.add(self.segs, self.dots)
+        self.at(-1)
+
+    def at(self, t):
+        for k, (d, tk) in enumerate(zip(self.dots, self.times)):
+            on = t >= tk
+            d.set_opacity(1.0 if on else 0.0)
+            if k:
+                self.segs[k - 1].set_stroke(opacity=0.8 if on else 0.0)

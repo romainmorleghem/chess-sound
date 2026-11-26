@@ -19,7 +19,7 @@ class Network(Narrated):
         self.say("From the centre, eight.", kn.animate.move_to(board.pos("d4")), FadeOut(e1), Create(e2), run_time=1.2)
         allN = bands(board, "N", width=1.8)
         n_edges = int(adjacency("N").sum() // 2)
-        cnt = Text(f"{n_edges} rubber bands", font_size=30, color=BAND).to_edge(RIGHT, buff=0.8)
+        cnt = Text(f"{n_edges} rubber bands", font_size=30, color=BAND).next_to(board, RIGHT, buff=0.6)
         self.say("Do this from every square. What you get is an object you could build: "
                  f"a net of {n_edges} rubber bands. This is the knight's instrument.",
                  FadeOut(kn), FadeOut(e2), Create(allN, lag_ratio=0.01), FadeIn(cnt), run_time=3.0)

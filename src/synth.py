@@ -11,12 +11,11 @@ pris mode par mode) : c'est l'énergie déposée dans la fréquence f.
 import numpy as np
 from scipy.io import wavfile
 from graphs import adjacency, laplacian, parse, PIECES  # noqa: F401
-from modes import levels, TOL
+from modes import levels, TOL, F0
 
 SR = 44100
-F0 = 220.0          # f = F0 * sqrt(λ) : 113 Hz (pion) ... 1206 Hz (dame)
-TAU0 = 1.6          # durée de vie (s) d'un mode à 220 Hz ; τ ∝ 1/f
-TILT = 1.0          # amplitude × (220/f)^TILT : 1 = frappe physique (déplacement ∝ 1/ω), 0 = règle brute
+TAU0 = 1.6          # durée de vie (s) d'un mode à F0 ; τ ∝ 1/f
+TILT = 1.0          # amplitude × (F0/f)^TILT : 1 = frappe physique (déplacement ∝ 1/ω), 0 = règle brute
 
 
 class Instrument:
@@ -33,7 +32,7 @@ class Instrument:
             x[parse(frm) if isinstance(frm, str) else frm] -= 1
         a = np.array([np.linalg.norm(U.T @ x) for _, U in self.levels])
         a[self.freqs == 0] = 0  # mode λ = 0 (translation) ignoré
-        a[self.freqs > 0] *= (220.0 / self.freqs[self.freqs > 0]) ** TILT
+        a[self.freqs > 0] *= (F0 / self.freqs[self.freqs > 0]) ** TILT
         return a
 
     def note(self, to, frm=None, dur=2.0, accent=1.0, drone=0.0):
@@ -43,7 +42,7 @@ class Instrument:
         for f, ak in zip(self.freqs, a):
             if ak < 1e-9 or f <= 0:
                 continue
-            tau = TAU0 * (220.0 / f)
+            tau = TAU0 * (F0 / f)
             y += ak * np.sin(2 * np.pi * f * t) * np.exp(-t / tau)
         if drone:  # bourdon grave pour le mode λ = 0 (option)
             y += drone * np.sin(2 * np.pi * 55 * t) * np.exp(-t / 3)

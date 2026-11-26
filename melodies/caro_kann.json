@@ -3,12 +3,12 @@
  "step": 0.5,
  "scores": {
   "simplicite": 0.047006836619996877,
-  "rugosite": 10.403183880998727,
+  "rugosite": 6.765218687505589,
   "unissons": 0.0
  },
  "z": {
-  "simplicite": -0.9126214278003767,
-  "rugosite": 1.218092224348797
+  "simplicite": -0.9126214278003778,
+  "rugosite": 1.1772590842070731
  },
  "events": [
   {
@@ -23,7 +23,7 @@
    "check": false,
    "mate": false,
    "t": 0.0,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 1,
@@ -37,7 +37,7 @@
    "check": false,
    "mate": false,
    "t": 0.5,
-   "f_dom": 113.14
+   "f_dom": 257.13
   }
  ]
 }

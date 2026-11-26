@@ -4,6 +4,7 @@ from graphs import (adjacency, laplacian, normalized_laplacian, perm_matrix, sym
                     D4_CLASS, D4_IRREPS, coords, PIECES, NAMES_FR)
 
 TOL = 1e-7
+F0 = 500.0   # Hz : f = F0 * sqrt(λ)  (pion 257 Hz ... dame 2741 Hz)
 
 
 def irrep_projectors(group):
@@ -99,7 +100,7 @@ def fig_modes(piece, n=16, path=None, norm=False):
     for k, ax in enumerate(axs.ravel()):
         if k >= n:
             ax.axis("off"); continue
-        f = 220 * np.sqrt(max(w[k], 0))
+        f = F0 * np.sqrt(max(w[k], 0))
         ttl = f"λ={w[k]:.3f}  {lab[k]['irrep']}" + (f" ×{lab[k]['mult']}" if lab[k]['mult'] > 1 else "")
         board_image(ax, V[:, k], ttl.replace("  ", "\n") + f"  {f:.0f} Hz")
     fig.suptitle(f"{NAMES_FR[piece]} — {n} premiers modes (L = D − A)", fontsize=11)
@@ -116,15 +117,15 @@ def fig_spectra(path):
         for a, b in levels(w):
             if w[a] < TOL:
                 continue
-            f = 220 * np.sqrt(w[a])
+            f = F0 * np.sqrt(w[a])
             ax.plot([f, f], [row - 0.35 * min(1, 0.3 + 0.1 * (b - a)), row + 0.35 * min(1, 0.3 + 0.1 * (b - a))],
                     color=f"C{row}", lw=1.2 + 0.08 * (b - a))
     ax.set_xscale("log")
-    ticks = [110, 220, 440, 880, 1760]
-    ax.set_xticks(ticks); ax.set_xticklabels(["La2\n110", "La3\n220", "La4\n440", "La5\n880", "La6\n1760"])
+    ticks = [220, 440, 880, 1760, 3520]
+    ax.set_xticks(ticks); ax.set_xticklabels(["La3\n220", "La4\n440", "La5\n880", "La6\n1760", "La7\n3520"])
     ax.set_yticks(range(len(PIECES))); ax.set_yticklabels([NAMES_FR[p] for p in PIECES])
-    ax.set_xlim(100, 1400)
-    ax.set_title("Spectres : chaque trait = une fréquence propre (f = 220·√λ Hz) ; trait épais = mode dégénéré")
+    ax.set_xlim(230, 3000)
+    ax.set_title("Spectres : chaque trait = une fréquence propre (f = 500·√λ Hz) ; trait épais = mode dégénéré")
     ax.grid(axis="x", alpha=0.3)
     fig.tight_layout(); fig.savefig(path, dpi=120); plt.close(fig)
 

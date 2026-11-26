@@ -2,13 +2,13 @@
  "title": "L'Immortelle",
  "step": 0.34,
  "scores": {
-  "simplicite": 0.21015797473903933,
-  "rugosite": 3.269235883837919,
+  "simplicite": 0.2101579747390394,
+  "rugosite": 2.1570145533402427,
   "unissons": 0.13636363636363635
  },
  "z": {
-  "simplicite": -0.07185472272575646,
-  "rugosite": -0.8886020127723616
+  "simplicite": -0.07185472272575547,
+  "rugosite": -0.868424876757852
  },
  "events": [
   {
@@ -23,7 +23,7 @@
    "check": false,
    "mate": false,
    "t": 0.0,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 1,
@@ -37,7 +37,7 @@
    "check": false,
    "mate": false,
    "t": 0.34,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 2,
@@ -51,7 +51,7 @@
    "check": false,
    "mate": false,
    "t": 0.68,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 3,
@@ -65,7 +65,7 @@
    "check": false,
    "mate": false,
    "t": 1.02,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 4,
@@ -79,7 +79,7 @@
    "check": false,
    "mate": false,
    "t": 1.36,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   },
   {
    "ply": 5,
@@ -93,7 +93,7 @@
    "check": true,
    "mate": false,
    "t": 1.7,
-   "f_dom": 950.11
+   "f_dom": 2159.33
   },
   {
    "ply": 6,
@@ -107,7 +107,7 @@
    "check": false,
    "mate": false,
    "t": 2.04,
-   "f_dom": 141.96
+   "f_dom": 322.65
   },
   {
    "ply": 7,
@@ -121,7 +121,7 @@
    "check": false,
    "mate": false,
    "t": 2.38,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 8,
@@ -135,7 +135,7 @@
    "check": false,
    "mate": false,
    "t": 2.72,
-   "f_dom": 729.66
+   "f_dom": 1658.31
   },
   {
    "ply": 9,
@@ -149,7 +149,7 @@
    "check": false,
    "mate": false,
    "t": 3.06,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 10,
@@ -163,7 +163,7 @@
    "check": false,
    "mate": false,
    "t": 3.4,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 11,
@@ -177,7 +177,7 @@
    "check": false,
    "mate": false,
    "t": 3.74,
-   "f_dom": 1100.0
+   "f_dom": 2500.0
   },
   {
    "ply": 12,
@@ -191,7 +191,7 @@
    "check": false,
    "mate": false,
    "t": 4.08,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 13,
@@ -205,7 +205,7 @@
    "check": false,
    "mate": false,
    "t": 4.42,
-   "f_dom": 400.3
+   "f_dom": 909.78
   },
   {
    "ply": 14,
@@ -219,7 +219,7 @@
    "check": false,
    "mate": false,
    "t": 4.76,
-   "f_dom": 400.3
+   "f_dom": 909.78
   },
   {
    "ply": 15,
@@ -233,7 +233,7 @@
    "check": false,
    "mate": false,
    "t": 5.1,
-   "f_dom": 1143.15
+   "f_dom": 2598.08
   },
   {
    "ply": 16,
@@ -247,7 +247,7 @@
    "check": false,
    "mate": false,
    "t": 5.44,
-   "f_dom": 670.31
+   "f_dom": 1523.43
   },
   {
    "ply": 17,
@@ -261,7 +261,7 @@
    "check": false,
    "mate": false,
    "t": 5.78,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 18,
@@ -275,7 +275,7 @@
    "check": false,
    "mate": false,
    "t": 6.12,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 19,
@@ -289,7 +289,7 @@
    "check": false,
    "mate": false,
    "t": 6.46,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 20,
@@ -303,7 +303,7 @@
    "check": false,
    "mate": false,
    "t": 6.8,
-   "f_dom": 880.0
+   "f_dom": 2000.0
   },
   {
    "ply": 21,
@@ -317,7 +317,7 @@
    "check": false,
    "mate": false,
    "t": 7.14,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 22,
@@ -331,7 +331,7 @@
    "check": false,
    "mate": false,
    "t": 7.48,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 23,
@@ -345,7 +345,7 @@
    "check": false,
    "mate": false,
    "t": 7.82,
-   "f_dom": 1143.15
+   "f_dom": 2598.08
   },
   {
    "ply": 24,
@@ -359,7 +359,7 @@
    "check": false,
    "mate": false,
    "t": 8.16,
-   "f_dom": 113.14
+   "f_dom": 257.13
   },
   {
    "ply": 25,
@@ -373,7 +373,7 @@
    "check": false,
    "mate": false,
    "t": 8.5,
-   "f_dom": 1143.15
+   "f_dom": 2598.08
   },
   {
    "ply": 26,
@@ -387,7 +387,7 @@
    "check": false,
    "mate": false,
    "t": 8.84,
-   "f_dom": 1174.62
+   "f_dom": 2669.6
   },
   {
    "ply": 27,
@@ -401,7 +401,7 @@
    "check": false,
    "mate": false,
    "t": 9.18,
-   "f_dom": 306.06
+   "f_dom": 695.59
   },
   {
    "ply": 28,
@@ -415,7 +415,7 @@
    "check": false,
    "mate": false,
    "t": 9.52,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   },
   {
    "ply": 29,
@@ -429,7 +429,7 @@
    "check": false,
    "mate": false,
    "t": 9.86,
-   "f_dom": 1174.62
+   "f_dom": 2669.6
   },
   {
    "ply": 30,
@@ -443,7 +443,7 @@
    "check": false,
    "mate": false,
    "t": 10.2,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 31,
@@ -457,7 +457,7 @@
    "check": false,
    "mate": false,
    "t": 10.54,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   },
   {
    "ply": 32,
@@ -471,7 +471,7 @@
    "check": false,
    "mate": false,
    "t": 10.88,
-   "f_dom": 711.3
+   "f_dom": 1616.6
   },
   {
    "ply": 33,
@@ -485,7 +485,7 @@
    "check": false,
    "mate": false,
    "t": 11.22,
-   "f_dom": 1128.24
+   "f_dom": 2564.19
   },
   {
    "ply": 34,
@@ -499,7 +499,7 @@
    "check": false,
    "mate": false,
    "t": 11.56,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   },
   {
    "ply": 35,
@@ -513,7 +513,7 @@
    "check": false,
    "mate": false,
    "t": 11.9,
-   "f_dom": 582.07
+   "f_dom": 1322.88
   },
   {
    "ply": 36,
@@ -527,7 +527,7 @@
    "check": false,
    "mate": false,
    "t": 12.24,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 37,
@@ -541,7 +541,7 @@
    "check": true,
    "mate": false,
    "t": 12.58,
-   "f_dom": 1080.31
+   "f_dom": 2455.25
   },
   {
    "ply": 38,
@@ -555,7 +555,7 @@
    "check": false,
    "mate": false,
    "t": 12.92,
-   "f_dom": 141.96
+   "f_dom": 322.65
   },
   {
    "ply": 39,
@@ -569,7 +569,7 @@
    "check": false,
    "mate": false,
    "t": 13.26,
-   "f_dom": 306.06
+   "f_dom": 695.59
   },
   {
    "ply": 40,
@@ -583,7 +583,7 @@
    "check": true,
    "mate": false,
    "t": 13.6,
-   "f_dom": 318.25
+   "f_dom": 723.3
   },
   {
    "ply": 41,
@@ -597,7 +597,7 @@
    "check": false,
    "mate": false,
    "t": 13.94,
-   "f_dom": 141.96
+   "f_dom": 322.65
   },
   {
    "ply": 42,
@@ -611,7 +611,7 @@
    "check": true,
    "mate": false,
    "t": 14.28,
-   "f_dom": 1174.62
+   "f_dom": 2669.6
   },
   {
    "ply": 43,
@@ -625,7 +625,7 @@
    "check": false,
    "mate": false,
    "t": 14.62,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 44,
@@ -639,7 +639,7 @@
    "check": true,
    "mate": true,
    "t": 14.96,
-   "f_dom": 729.66
+   "f_dom": 1658.31
   }
  ]
 }

@@ -1,6 +1,8 @@
 """s04 · The knight's modes; the highest one is the checkerboard (bipartite)."""
 from _common import (Narrated, Board, modes, strike, glyph, np, adjacency, normalized_laplacian, coords,
                      FG, MUTED, BAND, UP, DOWN, LEFT, RIGHT)
+from modes import F0
+from synth import Instrument
 from manim import FadeIn, FadeOut, Text, VGroup, Tex, LaggedStart, MathTex
 
 
@@ -15,7 +17,7 @@ class Knight(Narrated):
                  "swings down, with a quiet line of nodes in between.")
         for k, txt in ((1, None), (3, "Higher modes have more nodes, like the harmonics of the string."),
                        (10, "Higher still. The pattern gets finer and finer.")):
-            f = 220 * np.sqrt(w[k])
+            f = F0 * np.sqrt(w[k])
             new = Text(f"mode {k}\nλ = {w[k]:.3f}\nf = {f:.0f} Hz", font_size=30, color=FG, line_spacing=1.2).shift(3.2 * RIGHT)
             if txt:
                 d = self.voice(txt)
@@ -27,10 +29,12 @@ class Knight(Narrated):
         grid = VGroup()
         for k in range(1, 17):
             b = Board(0.17).paint(V[:, k])
-            t = Text(f"{220*np.sqrt(w[k]):.0f} Hz", font_size=14, color=MUTED).next_to(b, DOWN, buff=0.08)
+            t = Text(f"{F0*np.sqrt(w[k]):.0f} Hz", font_size=14, color=MUTED).next_to(b, DOWN, buff=0.08)
             grid.add(VGroup(b, t))
         grid.arrange_in_grid(2, 8, buff=(0.25, 0.35)).shift(0.3 * DOWN)
-        self.say("The knight has sixty-four modes, with forty-eight different frequencies, from 235 to 794 hertz. "
+        fr = Instrument("N").freqs; fr = fr[fr > 0]
+        self.say(f"The knight has sixty-four modes, with forty-eight different frequencies, from {fr.min():.0f} "
+                 f"to {fr.max():.0f} hertz. "
                  "Here are the first sixteen.", LaggedStart(*[FadeIn(g) for g in grid], lag_ratio=0.08), run_time=2.5)
         self.play(FadeOut(grid), run_time=0.6)
 

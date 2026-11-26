@@ -21,7 +21,7 @@ class Symmetry(Narrated):
         v1, v2 = V[:, 1], V[:, 2]
         b1 = Board(0.36).paint(v1).shift(4.6 * LEFT)
         b2 = Board(0.36).paint(v2).shift(1.2 * LEFT)
-        f = 220 * np.sqrt(w[1])
+        f = __import__("modes").F0 * np.sqrt(w[1])
         t1 = Text(f"{f:.0f} Hz", font_size=24, color=MUTED).next_to(b1, DOWN)
         t2 = Text(f"{f:.0f} Hz", font_size=24, color=MUTED).next_to(b2, DOWN)
         self.say("So if you turn a mode, you get a mode again, with the same frequency. Sometimes it's a new "

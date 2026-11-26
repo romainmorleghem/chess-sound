@@ -3,12 +3,12 @@
  "step": 0.5,
  "scores": {
   "simplicite": 0.5422193104935191,
-  "rugosite": 6.016723624564791,
+  "rugosite": 3.9411597530022133,
   "unissons": 0.5
  },
  "z": {
-  "simplicite": 0.6459801985931234,
-  "rugosite": -0.5907004298374677
+  "simplicite": 0.6459801985931223,
+  "rugosite": -0.5416163301314205
  },
  "events": [
   {
@@ -23,7 +23,7 @@
    "check": false,
    "mate": false,
    "t": 0.0,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 1,
@@ -37,7 +37,7 @@
    "check": false,
    "mate": false,
    "t": 0.5,
-   "f_dom": 218.44
+   "f_dom": 496.46
   },
   {
    "ply": 2,
@@ -51,7 +51,7 @@
    "check": false,
    "mate": false,
    "t": 1.0,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 3,
@@ -65,7 +65,7 @@
    "check": false,
    "mate": false,
    "t": 1.5,
-   "f_dom": 684.32
+   "f_dom": 1555.27
   },
   {
    "ply": 4,
@@ -79,7 +79,7 @@
    "check": false,
    "mate": false,
    "t": 2.0,
-   "f_dom": 793.22
+   "f_dom": 1802.78
   }
  ]
 }

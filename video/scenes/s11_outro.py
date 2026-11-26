@@ -9,7 +9,7 @@ class Outro(Narrated):
         items = VGroup(
             Tex(r"a piece $\to$ a net of rubber bands on 64 beads", font_size=34),
             Tex(r"a net $\to$ its Laplacian $L = D - A$", font_size=34),
-            Tex(r"modes $L v = \lambda v$ $\to$ notes $f = 220\sqrt{\lambda}$ Hz", font_size=34),
+            Tex(r"modes $L v = \lambda v$ $\to$ notes $f = 500\sqrt{\lambda}$ Hz", font_size=34),
             Tex(r"rook: a tritone \quad bishop: a doubled instrument \quad knight: a checkerboard on top", font_size=30, color=MUTED),
             Tex(r"a move $\to$ a strike \quad a game $\to$ a melody", font_size=34),
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.35)
