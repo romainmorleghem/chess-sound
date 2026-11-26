@@ -25,3 +25,12 @@ PGN : coups vérifiés légaux par python-chess, mats finaux retrouvés.
 Beauté musicale, deux scores entre notes successives, comparés à 300 parties jouées au hasard (z-score) :
 - *simplicité* : rapport de fréquences dominantes proche d'une fraction simple p/q (hauteur de Tenney) ;
 - *rugosité* : dissonance sensorielle de Sethares (1993) entre les spectres complets (plus bas = plus doux).
+
+## Étape 5 — vidéo (`video/`, structure du dépôt ising)
+Voix off anglaise Kokoro-82M `af_heart` (`video/common/narrative.py`, modèles dans `~/.cache/kokoro`, cf. ising).
+Plan : `video/storyboard.md`. Sons des scènes : `python3 video/compute/sounds.py` → `media/sounds/`.
+```bash
+cd video && python3 render.py          # aperçu 480p  -> media/video/chess_sound_480p15.mp4 (≈ 5 min de rendu)
+python3 render.py -q f                 # final 1080p30 -> media/video/chess_sound_1080p30.mp4
+python3 render.py --only s09           # re-rendre une séquence puis réassembler
+```

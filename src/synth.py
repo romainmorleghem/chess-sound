@@ -10,7 +10,7 @@ pris mode par mode) : c'est l'énergie déposée dans la fréquence f.
 """
 import numpy as np
 from scipy.io import wavfile
-from graphs import adjacency, laplacian, parse, PIECES
+from graphs import adjacency, laplacian, parse, PIECES  # noqa: F401
 from modes import levels, TOL
 
 SR = 44100
