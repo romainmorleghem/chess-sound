@@ -1,0 +1,57 @@
+{
+ "title": "Gambit dame",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 0.5235034183099985,
+  "rugosite": 11.022125070090176,
+  "unissons": 0.5
+ },
+ "z": {
+  "simplicite": 0.24748755901801847,
+  "rugosite": 1.727559756002471
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "d4",
+   "color": "w",
+   "piece": "P",
+   "frm": "d2",
+   "to": "d4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "d5",
+   "color": "b",
+   "piece": "P",
+   "frm": "d7",
+   "to": "d5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 2,
+   "san": "c4",
+   "color": "w",
+   "piece": "P",
+   "frm": "c2",
+   "to": "c4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.0,
+   "f_dom": 113.14
+  }
+ ]
+}

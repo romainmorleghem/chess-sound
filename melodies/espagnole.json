@@ -1,0 +1,85 @@
+{
+ "title": "Partie espagnole",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 0.5285074583419589,
+  "rugosite": 6.097031526899043,
+  "unissons": 0.5
+ },
+ "z": {
+  "simplicite": 0.591431890869537,
+  "rugosite": -0.5498890437714979
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "e4",
+   "color": "w",
+   "piece": "P",
+   "frm": "e2",
+   "to": "e4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "e5",
+   "color": "b",
+   "piece": "P",
+   "frm": "e7",
+   "to": "e5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 2,
+   "san": "Nf3",
+   "color": "w",
+   "piece": "N",
+   "frm": "g1",
+   "to": "f3",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.0,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 3,
+   "san": "Nc6",
+   "color": "b",
+   "piece": "N",
+   "frm": "b8",
+   "to": "c6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.5,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 4,
+   "san": "Bb5",
+   "color": "w",
+   "piece": "B",
+   "frm": "f1",
+   "to": "b5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 2.0,
+   "f_dom": 729.66
+  }
+ ]
+}

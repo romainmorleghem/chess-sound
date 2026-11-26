@@ -1,0 +1,43 @@
+{
+ "title": "Défense française",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 1.0,
+  "rugosite": 10.67698210484949,
+  "unissons": 1.0
+ },
+ "z": {
+  "simplicite": 1.1575160670357512,
+  "rugosite": 1.3836356450719869
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "e4",
+   "color": "w",
+   "piece": "P",
+   "frm": "e2",
+   "to": "e4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "e6",
+   "color": "b",
+   "piece": "P",
+   "frm": "e7",
+   "to": "e6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 218.44
+  }
+ ]
+}

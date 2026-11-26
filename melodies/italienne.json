@@ -1,0 +1,85 @@
+{
+ "title": "Partie italienne",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 0.5422193104935191,
+  "rugosite": 6.016723624564791,
+  "unissons": 0.5
+ },
+ "z": {
+  "simplicite": 0.6459801985931234,
+  "rugosite": -0.5907004298374677
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "e4",
+   "color": "w",
+   "piece": "P",
+   "frm": "e2",
+   "to": "e4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "e5",
+   "color": "b",
+   "piece": "P",
+   "frm": "e7",
+   "to": "e5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 2,
+   "san": "Nf3",
+   "color": "w",
+   "piece": "N",
+   "frm": "g1",
+   "to": "f3",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.0,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 3,
+   "san": "Nc6",
+   "color": "b",
+   "piece": "N",
+   "frm": "b8",
+   "to": "c6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.5,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 4,
+   "san": "Bc4",
+   "color": "w",
+   "piece": "B",
+   "frm": "f1",
+   "to": "c4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 2.0,
+   "f_dom": 793.22
+  }
+ ]
+}

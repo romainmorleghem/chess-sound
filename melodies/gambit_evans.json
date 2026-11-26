@@ -1,0 +1,113 @@
+{
+ "title": "Gambit Evans",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 0.5519914547509545,
+  "rugosite": 4.753087646392792,
+  "unissons": 0.5
+ },
+ "z": {
+  "simplicite": 1.0098423731288906,
+  "rugosite": -1.090441126856695
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "e4",
+   "color": "w",
+   "piece": "P",
+   "frm": "e2",
+   "to": "e4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "e5",
+   "color": "b",
+   "piece": "P",
+   "frm": "e7",
+   "to": "e5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 2,
+   "san": "Nf3",
+   "color": "w",
+   "piece": "N",
+   "frm": "g1",
+   "to": "f3",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.0,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 3,
+   "san": "Nc6",
+   "color": "b",
+   "piece": "N",
+   "frm": "b8",
+   "to": "c6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.5,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 4,
+   "san": "Bc4",
+   "color": "w",
+   "piece": "B",
+   "frm": "f1",
+   "to": "c4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 2.0,
+   "f_dom": 793.22
+  },
+  {
+   "ply": 5,
+   "san": "Bc5",
+   "color": "b",
+   "piece": "B",
+   "frm": "f8",
+   "to": "c5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 2.5,
+   "f_dom": 793.22
+  },
+  {
+   "ply": 6,
+   "san": "b4",
+   "color": "w",
+   "piece": "P",
+   "frm": "b2",
+   "to": "b4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 3.0,
+   "f_dom": 113.14
+  }
+ ]
+}

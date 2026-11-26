@@ -1,0 +1,127 @@
+{
+ "title": "Est-indienne",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 0.347921341102409,
+  "rugosite": 6.455477082410136,
+  "unissons": 0.2857142857142857
+ },
+ "z": {
+  "simplicite": 0.05765629776391733,
+  "rugosite": -0.0963503184945651
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "d4",
+   "color": "w",
+   "piece": "P",
+   "frm": "d2",
+   "to": "d4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "Nf6",
+   "color": "b",
+   "piece": "N",
+   "frm": "g8",
+   "to": "f6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 2,
+   "san": "c4",
+   "color": "w",
+   "piece": "P",
+   "frm": "c2",
+   "to": "c4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.0,
+   "f_dom": 113.14
+  },
+  {
+   "ply": 3,
+   "san": "g6",
+   "color": "b",
+   "piece": "P",
+   "frm": "g7",
+   "to": "g6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.5,
+   "f_dom": 113.14
+  },
+  {
+   "ply": 4,
+   "san": "Nc3",
+   "color": "w",
+   "piece": "N",
+   "frm": "b1",
+   "to": "c3",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 2.0,
+   "f_dom": 684.32
+  },
+  {
+   "ply": 5,
+   "san": "Bg7",
+   "color": "b",
+   "piece": "B",
+   "frm": "f8",
+   "to": "g7",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 2.5,
+   "f_dom": 714.97
+  },
+  {
+   "ply": 6,
+   "san": "e4",
+   "color": "w",
+   "piece": "P",
+   "frm": "e2",
+   "to": "e4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 3.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 7,
+   "san": "d6",
+   "color": "b",
+   "piece": "P",
+   "frm": "d7",
+   "to": "d6",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 3.5,
+   "f_dom": 218.44
+  }
+ ]
+}

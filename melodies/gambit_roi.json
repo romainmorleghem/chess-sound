@@ -1,0 +1,57 @@
+{
+ "title": "Gambit roi",
+ "step": 0.5,
+ "scores": {
+  "simplicite": 0.5235034183099985,
+  "rugosite": 11.022125070089812,
+  "unissons": 0.5
+ },
+ "z": {
+  "simplicite": 0.24748755901801847,
+  "rugosite": 1.7275597560022684
+ },
+ "events": [
+  {
+   "ply": 0,
+   "san": "e4",
+   "color": "w",
+   "piece": "P",
+   "frm": "e2",
+   "to": "e4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.0,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 1,
+   "san": "e5",
+   "color": "b",
+   "piece": "P",
+   "frm": "e7",
+   "to": "e5",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 0.5,
+   "f_dom": 218.44
+  },
+  {
+   "ply": 2,
+   "san": "f4",
+   "color": "w",
+   "piece": "P",
+   "frm": "f2",
+   "to": "f4",
+   "capture": false,
+   "castle": false,
+   "check": false,
+   "mate": false,
+   "t": 1.0,
+   "f_dom": 113.14
+  }
+ ]
+}
