@@ -27,6 +27,8 @@ Beauté musicale, deux scores entre notes successives, comparés à 300 parties 
 - *rugosité* : dissonance sensorielle de Sethares (1993) entre les spectres complets (plus bas = plus doux).
 
 ## Étape 5 — vidéo (`video/`, structure du dépôt ising)
+**Vidéo finale : [`video/chess_sound_1080p30.mp4`](video/chess_sound_1080p30.mp4)** (12 min 27, 1080p30, voix anglaise).
+
 Voix off anglaise Kokoro-82M `af_heart` (`video/common/narrative.py`, modèles dans `~/.cache/kokoro`, cf. ising).
 Plan : `video/storyboard.md`. Sons des scènes : `python3 video/compute/sounds.py` → `media/sounds/`.
 ```bash
