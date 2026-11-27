@@ -7,7 +7,7 @@ class Outro(Narrated):
     def construct(self):
         self.chapter("Recap")
         items = VGroup(*[Tex(t, font_size=32) for t in (
-            r"$L = E_c - E_p$, \quad $S = \int L\,dt$",
+            r"$L = T - V$, \quad $S = \int L\,dt$",
             r"physical paths make $S$ stationary: $\delta S = 0$",
             r"$\Longleftrightarrow$ Euler-Lagrange: $\frac{d}{dt}\frac{\partial L}{\partial\dot q} = \frac{\partial L}{\partial q}$",
             r"any coordinates, constraints for free, all of physics, the door to quantum mechanics",

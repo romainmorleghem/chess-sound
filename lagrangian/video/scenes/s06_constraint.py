@@ -11,7 +11,7 @@ class Constraint(Narrated):
         L = MathTex(r"L =", r"\tfrac12 m(\dot x^2+\dot y^2) - mgy", r"+", r"\lambda\,(x^2+y^2-\ell^2)", font_size=42).to_edge(UP, buff=1.0)
         b1 = Brace(L[1], DOWN, color=GREEN); t1 = Text("free fall", font_size=22, color=GREEN).next_to(b1, DOWN, buff=0.1)
         b2 = Brace(L[3], DOWN, color=TEAL); t2 = Text("constraint", font_size=22, color=TEAL).next_to(b2, DOWN, buff=0.1)
-        self.say("Back to the pendulum, written the way the notes do it: as a free falling ball, plus a constraint "
+        self.say("Back to the pendulum, written another way: as a free falling ball, plus a constraint "
                  "keeping it on a circle of radius l, multiplied by a new unknown, lambda.", Write(L), FadeIn(b1), FadeIn(t1), FadeIn(b2), FadeIn(t2))
         eqs = VGroup(MathTex(r"m\ddot x = 2\lambda x", font_size=38), MathTex(r"m\ddot y = 2\lambda y - mg", font_size=38),
                      MathTex(r"0 = x^2+y^2-\ell^2", font_size=38)).arrange(DOWN, buff=0.25, aligned_edge=LEFT).shift(2.8 * RIGHT + 0.2 * DOWN)

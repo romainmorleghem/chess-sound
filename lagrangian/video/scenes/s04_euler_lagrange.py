@@ -18,8 +18,8 @@ class EulerLagrange(Narrated):
         b2 = Brace(el[4], DOWN, color=RED); t2 = Text("force", font_size=24, color=RED).next_to(b2, DOWN)
         self.say("Read it like Newton: the left side is the rate of change of a momentum, the right side is a force.",
                  FadeIn(b1), FadeIn(t1), FadeIn(b2), FadeIn(t2))
-        nw = VGroup(MathTex(r"L = \tfrac12 m\dot q^2 - E_p(q)", font_size=40),
-                    MathTex(r"\frac{\partial L}{\partial\dot q} = m\dot q, \qquad \frac{\partial L}{\partial q} = -\frac{dE_p}{dq} = F", font_size=40),
+        nw = VGroup(MathTex(r"L = \tfrac12 m\dot q^2 - V(q)", font_size=40),
+                    MathTex(r"\frac{\partial L}{\partial\dot q} = m\dot q, \qquad \frac{\partial L}{\partial q} = -\frac{dV}{dq} = F", font_size=40),
                     MathTex(r"\frac{d}{dt}(m\dot q) = F", font_size=46, color=GOLD)).arrange(DOWN, buff=0.4).shift(0.9 * DOWN)
         self.say("Check it with the simplest Lagrangian, one half m q dot squared minus a potential. Out comes "
                  "Newton's second law.", Write(nw[0]), Write(nw[1]), Write(nw[2]))

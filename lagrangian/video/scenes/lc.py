@@ -35,3 +35,8 @@ def pendulum_sol(theta0=1.0, g=9.81, l=1.0, T=10.0, n=1200):
     s = solve_ivp(lambda t, y: [y[1], -g / l * np.sin(y[0])], (0, T), [theta0, 0.0], t_eval=np.linspace(0, T, n),
                   rtol=1e-9, atol=1e-11)
     return s.t, s.y[0], s.y[1]
+
+# prononciation (Kokoro / espeak) : g doux de « Lagrangian », Lagrange à la française, Noether
+from common import narrative as _nar  # noqa: E402
+_nar.PRONOUNCE.update({r"\bLagrangians\b": "Lagranjians", r"\bLagrangian\b": "Lagranjian",
+                       r"\bLagrange\b": "Lagrahnj", r"\bNoether\b": "Nerter"})

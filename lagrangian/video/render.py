@@ -15,8 +15,8 @@ MEDIA = HERE.parents[1] / "media" / "lagrangian_video"
 SEQUENCE = [
     ("s00_cold_open", "ColdOpen"), ("s01_newton", "Newton"), ("s02_action", "Action"), ("s03_variation", "Variation"),
     ("s04_euler_lagrange", "EulerLagrange"), ("s05_why", "Why"), ("s06_constraint", "Constraint"),
-    ("s07_examples", "Examples"), ("s08_formalism", "Formalism"), ("s09_energy", "Energy"), ("s10_noether", "Noether"),
-    ("s11_outro", "Outro"),
+    ("s07_manifold", "Manifold"), ("s08_tangent", "Tangent"), ("s09_paths", "Paths"), ("s10_theorem", "Theorem"),
+    ("s11_energy", "Energy"), ("s12_noether", "Noether"), ("s13_outro", "Outro"),
 ]
 QUALITY = {"f": "1080p30", "l": "480p15", "m": "720p30", "h": "1080p60", "k": "2160p60"}
 

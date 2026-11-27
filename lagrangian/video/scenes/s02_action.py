@@ -26,9 +26,9 @@ def action(eps):
 class Action(Narrated):
     def construct(self):
         self.chapter("2 · The Lagrangian and the action")
-        L = MathTex(r"L", r"=", r"E_c", r"-", r"E_p", font_size=60).shift(1.5 * UP + 3 * LEFT)
+        L = MathTex(r"L", r"=", r"T", r"-", r"V", font_size=60).shift(1.5 * UP + 3 * LEFT)
         S = MathTex(r"S", r"=", r"\int_{t_0}^{t_1} L\,dt", font_size=60).shift(1.5 * UP + 3 * RIGHT)
-        self.say("Here is the new idea. At each instant, take the kinetic energy minus the potential energy. "
+        self.say("Here is the new idea. At each instant, take the kinetic energy T, minus the potential energy V. "
                  "Not the sum: the difference. This is the Lagrangian, L.", Write(L))
         self.say("Add it up along the whole path, from start to finish: that's the action, S. One single number for "
                  "a whole trajectory.", Write(S))
