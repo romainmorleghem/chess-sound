@@ -40,13 +40,14 @@ class Why(Narrated):
         phase = 9.0 * eps ** 2                         # (S(ε) − S0)/ħ, ∝ ε² près du chemin stationnaire
         steps = np.exp(1j * phase) * (eps[1] - eps[0]) * 1.6
         pts = np.concatenate([[0], np.cumsum(steps)])
-        pts = pts - pts.mean()
-        o = 3.4 * RIGHT + 0.2 * DOWN
+        pts = pts - (pts.max().real + pts.min().real) / 2 - 1j * (pts.imag.max() + pts.imag.min()) / 2
+        pts = pts / max(np.ptp(pts.real), np.ptp(pts.imag)) * 4.6
+        o = 3.3 * RIGHT + 0.5 * DOWN
         spiral = VGroup()
         for k in range(len(steps)):
             a, b = pts[k], pts[k + 1]
             col = interpolate_color(PURPLE, GOLD, np.exp(-abs(eps[k]) * 1.6))
-            spiral.add(Line(o + 2.6 * np.array([a.real, a.imag, 0]), o + 2.6 * np.array([b.real, b.imag, 0]), color=col, stroke_width=3))
+            spiral.add(Line(o + np.array([a.real, a.imag, 0]), o + np.array([b.real, b.imag, 0]), color=col, stroke_width=3))
         tot = Arrow(spiral[0].get_start(), spiral[-1].get_end(), buff=0, color=FG, stroke_width=4)
         form = MathTex(r"\text{amplitude} = \sum_{\text{paths}} e^{\,iS/\hbar}", font_size=38).next_to(spiral, UP, buff=0.3)
         self.say("Five, and this is the deepest. In quantum mechanics, a particle explores every path at once. Each path "

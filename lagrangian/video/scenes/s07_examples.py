@@ -70,13 +70,13 @@ class Examples(Narrated):
         self.play(Rotate(racket, PI, axis=RIGHT), run_time=1)
         self.play(FadeOut(VGroup(ax, curves, lab, Lr, racket)), run_time=0.5)
         # référentiel tournant : Coriolis
-        Rd = 2.3
-        cL, cR = 3.6 * LEFT + 0.4 * DOWN, 0.6 * RIGHT + 0.4 * DOWN
+        Rd = 1.9
+        cL, cR = 4.7 * LEFT + 0.4 * DOWN, 0.6 * LEFT + 0.4 * DOWN
         dL, dR = Circle(radius=Rd, color=MUTED).move_to(cL), Circle(radius=Rd, color=MUTED).move_to(cR)
         tt = ValueTracker(0)
         Om = 1.2
-        v = np.array([0.9, 0.5, 0])
-        p0 = np.array([-1.6, -0.9, 0])
+        v = np.array([0.75, 0.42, 0])
+        p0 = np.array([-1.3, -0.75, 0])
         posI = lambda t: p0 + v * t
         def posR(t):
             x, y, _ = posI(t)
@@ -91,7 +91,8 @@ class Examples(Narrated):
                      Text("seen from the turntable", font_size=22, color=MUTED).next_to(dR, UP, buff=0.15))
         Lc = VGroup(MathTex(r"L = \tfrac12 m\,(\dot{\vec r} + \vec\Omega\wedge\vec r)^2", font_size=34),
                     MathTex(r"m\ddot{\vec r} = -2m\,\vec\Omega\wedge\dot{\vec r} - m\,\vec\Omega\wedge(\vec\Omega\wedge\vec r)", font_size=30, color=GOLD)
-                    ).arrange(DOWN, buff=0.35).to_edge(RIGHT, buff=0.3).shift(0.4 * DOWN)
+                    ).arrange(DOWN, buff=0.35)
+        Lc.scale_to_fit_width(4.6).to_edge(RIGHT, buff=0.3).shift(0.4 * DOWN)
         self.say("Fourth: a puck sliding on a turntable. From above, it goes in a straight line. Written in the "
                  "turning coordinates, the same free Lagrangian picks up extra terms.", Create(dL), Create(dR), FadeIn(hdr), Write(Lc[0]))
         self.add(trL, trR, mL, mR)
