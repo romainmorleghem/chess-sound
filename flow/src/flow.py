@@ -141,6 +141,40 @@ def move_events(board, move, knight="L"):
     return ev
 
 
+def game_record(moves, start_fen=chess.STARTING_FEN):
+    """Rejoue une partie UNE fois ; liste brute des événements (référentiel absolu), réutilisable par
+    plusieurs accumulateurs (référentiels, variantes du cavalier)."""
+    b = chess.Board(start_fen)
+    rec = dict(occ=[], steps=[], knL=[], kn=[], src=[], snk=[], disp=[], np=[])
+    n_pieces = len(b.piece_map()) * W
+
+    def occupy(t):
+        rec["occ"].extend((t, pc.color, pc.piece_type, x) for x, pc in b.piece_map().items())
+
+    t = 0
+    for t, mv in enumerate(moves):
+        occupy(t)
+        rec["np"].append(n_pieces)
+        knight = b.piece_type_at(mv.from_square) == chess.KNIGHT
+        ev = move_events(b, mv, "L")
+        if knight:
+            rec["knL"] += [(t,) + e for e in ev["steps"]]
+            evd = move_events(b, mv, "direct")
+            rec["kn"] += [(t,) + e for e in evd["kn"]]
+        else:
+            rec["steps"] += [(t,) + e for e in ev["steps"]]
+        for key in ("src", "snk", "disp"):
+            rec[key] += [(t,) + e for e in ev[key]]
+        if b.is_capture(mv):
+            n_pieces -= W
+        b.push(mv)
+    T = len(moves)
+    occupy(T)
+    rec["np"].append(n_pieces)
+    rec["T"] = T
+    return rec
+
+
 class Flow:
     """Accumulateur d'ensemble. add_game(moves, weight) ; tous les tableaux sont des sommes (en unités W)."""
 
@@ -168,68 +202,56 @@ class Flow:
         return _sq(x, c, self.frame)
 
     def add_game(self, moves, start_fen=chess.STARTING_FEN, weight=1):
-        b = chess.Board(start_fen)
         moves = list(moves)
         if len(moves) > self.tmax:
             moves = moves[: self.tmax]
             self.truncated += weight
-        n_pieces = len(b.piece_map()) * W
-        occ_t, occ_s, occ_x = [], [], []
+        return self.add_record(game_record(moves, start_fen), weight)
+
+    def add_record(self, rec, weight=1):
+        """Ajoute une partie déjà rejouée (game_record) ; tronque à tmax si besoin."""
+        T = rec["T"]
+        if T > self.tmax:
+            raise ValueError("record plus long que tmax : tronquer avant game_record")
+        fr = self.frame
+        sp = lambda c, p: species(c, p, fr)
+        X = lambda x, c: _sq(x, c, fr)
+        occ_t = [o[0] for o in rec["occ"]]
+        occ_s = [sp(o[1], o[2]) for o in rec["occ"]]
+        occ_x = [X(o[3], o[1]) for o in rec["occ"]]
         st, ss, se, sd, sw = [], [], [], [], []
         kt, ks, ke, kd = [], [], [], []
-        pt_, ps, px, pw = [], [], [], []     # sources
-        qt, qs, qx, qw = [], [], [], []      # puits
-        dt, ds, dx, dv = [], [], [], []      # déplacements
-        np_t = []
-
-        def occupy(t):
-            for x, pc in b.piece_map().items():
-                occ_t.append(t); occ_s.append(self._sp(pc.color, pc.piece_type)); occ_x.append(self._x(x, pc.color))
-
-        for t, mv in enumerate(moves):
-            occupy(t)
-            np_t.append(n_pieces)
-            ev = move_events(b, mv, self.knight)
-            for c, p, x, y, w in ev["steps"]:
-                x, y = self._x(x, c), self._x(y, c)
-                st.append(t); ss.append(self._sp(c, p)); sw.append(w)
-                se.append(EIDX[(min(x, y), max(x, y))]); sd.append(0 if x < y else 1)
-            for c, p, x, y, w in ev["kn"]:
-                x, y = self._x(x, c), self._x(y, c)
-                kt.append(t); ks.append(self._sp(c, p))
-                ke.append(KIDX[(min(x, y), max(x, y))]); kd.append(0 if x < y else 1)
-            for c, p, x, w in ev["src"]:
-                pt_.append(t); ps.append(self._sp(c, p)); px.append(self._x(x, c)); pw.append(w)
-            for c, p, x, w in ev["snk"]:
-                qt.append(t); qs.append(self._sp(c, p)); qx.append(self._x(x, c)); qw.append(w)
-            for c, p, a_, b_ in ev["disp"]:
-                a2, b2 = self._x(a_, c), self._x(b_, c)
-                dt.append(t); ds.append(self._sp(c, p)); dx.append(a2)
-                dv.append((b2 % 8 - a2 % 8, b2 // 8 - a2 // 8))
-            if b.is_capture(mv):
-                n_pieces -= W
-            b.push(mv)
-        T = len(moves)
-        occupy(T)
-        np_t.append(n_pieces)
-        # --- agrégation (une seule passe numpy par partie) ---
+        steps = rec["steps"] + (rec["knL"] if self.knight == "L" else [])
+        for t, c, p, x, y, w in steps:
+            x, y = X(x, c), X(y, c)
+            st.append(t); ss.append(sp(c, p)); sw.append(w)
+            se.append(EIDX[(min(x, y), max(x, y))]); sd.append(0 if x < y else 1)
+        if self.knight != "L":
+            for t, c, p, x, y, w in rec["kn"]:
+                x, y = X(x, c), X(y, c)
+                kt.append(t); ks.append(sp(c, p)); ke.append(KIDX[(min(x, y), max(x, y))]); kd.append(0 if x < y else 1)
         wgt = weight
         occ = (np.array(occ_t), np.array(occ_s), np.array(occ_x))
         np.add.at(self.S, occ, W * wgt)
         fin = occ[0] == T
         np.add.at(self.exit, (occ[0][fin], occ[1][fin], occ[2][fin]), W * wgt)
         self.N[: T + 1] += wgt
-        self.NP[: T + 1] += np.array(np_t) * wgt
+        self.NP[: T + 1] += np.array(rec["np"]) * wgt
         self.games += wgt
         if st:
             np.add.at(self.F, (np.array(st), np.array(ss), np.array(se), np.array(sd)), np.array(sw) * wgt)
         if kt:
             np.add.at(self.FK, (np.array(kt), np.array(ks), np.array(ke), np.array(kd)), W * wgt)
-        if pt_:
-            np.add.at(self.src, (np.array(pt_), np.array(ps), np.array(px)), np.array(pw) * wgt)
-        if qt:
-            np.add.at(self.snk, (np.array(qt), np.array(qs), np.array(qx)), np.array(qw) * wgt)
-        if dt:
+        for key, arr in (("src", self.src), ("snk", self.snk)):
+            if rec[key]:
+                t_, s_, x_, w_ = zip(*[(t, sp(c, p), X(x, c), w) for t, c, p, x, w in rec[key]])
+                np.add.at(arr, (np.array(t_), np.array(s_), np.array(x_)), np.array(w_) * wgt)
+        if rec["disp"]:
+            dt, ds, dx, dv = [], [], [], []
+            for t, c, p, a_, b_ in rec["disp"]:
+                a2, b2 = X(a_, c), X(b_, c)
+                dt.append(t); ds.append(sp(c, p)); dx.append(a2)
+                dv.append((b2 % 8 - a2 % 8, b2 // 8 - a2 // 8))
             dv = np.array(dv)
             idx = (np.array(dt), np.array(ds), np.array(dx))
             np.add.at(self.D, idx + (0,), dv[:, 0] * W * wgt)
@@ -283,3 +305,35 @@ def san_moves(text, start_fen=chess.STARTING_FEN):
         out.append(mv)
         b.push(mv)
     return out
+
+
+ARRAYS = ("N", "S", "F", "FK", "src", "snk", "exit", "D", "D2", "NP")
+
+
+def save_flows(path, flows, **meta):
+    out = {}
+    for name, f in flows.items():
+        for a in ARRAYS:
+            out[f"{name}.{a}"] = getattr(f, a)
+        out[f"{name}.cfg"] = np.array([f.tmax, f.games, f.truncated])
+        out[f"{name}.frame"] = np.array(f.frame)
+        out[f"{name}.knight"] = np.array(f.knight)
+    out.update({f"meta.{k}": np.asarray(v) for k, v in meta.items()})
+    np.savez_compressed(path, **out)
+
+
+def load_flows(path):
+    z = np.load(path)
+    names = sorted({k.split(".")[0] for k in z.files if not k.startswith("meta.")})
+    flows = {}
+    for n in names:
+        tmax, games, trunc = z[f"{n}.cfg"]
+        f = Flow.__new__(Flow)
+        f.tmax, f.games, f.truncated = int(tmax), int(games), int(trunc)
+        f.frame, f.knight = str(z[f"{n}.frame"]), str(z[f"{n}.knight"])
+        f.ns = NS_ABS if f.frame == "abs" else NS_MINE
+        for a in ARRAYS:
+            setattr(f, a, z[f"{n}.{a}"])
+        flows[n] = f
+    meta = {k[5:]: z[k] for k in z.files if k.startswith("meta.")}
+    return flows, meta

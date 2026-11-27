@@ -18,6 +18,19 @@
   moins de 20 000 parties acceptées dans les tranches extrêmes.
 - Témoin 2 (moteur / Maia / loi chess-physics) : reporté, plus tard.
 
+## Indicateurs pré-enregistrés (définis avant de regarder les données, 27/11/2026)
+Fenêtres de demi-coups : [0,10[, [10,30[, [30,60[, ≥ 60. Toutes espèces confondues, référentiel absolu, cavalier en L.
+Normalisation par transition (t < T_g) : l'ensemble perd les parties terminées (puits « exit »).
+1. **Activité** : Σ_e |J̄_e(t)|, J̄ = flux net moyen par partie vivante ; moyenne par fenêtre (t < 120).
+2. **Fraction rotationnelle** : ‖Cᵀψ‖² / ‖J‖² du flux net cumulé sur la fenêtre (Hodge, complexe des triangles).
+3. **Cohérence** : par case |Σ déplacements| / (n · √(Σ déplacement² / n)), moyennée sur les cases pondérées par n.
+4. **Entropie des puits** : entropie (bits, max 6) de la carte des prises (hors promotions).
+5. **Convergence près du roi adverse** : arrivées − départs des pièces du camp au trait dans le carré 5×5
+   centré sur le roi adverse (Chebyshev ≤ 2), par transition.
+IC : bootstrap de Poisson sur les parties (R = 200), avec et sans repondération ECO (groupes de 2 caractères,
+cible = mélange moyen des tranches). Témoin 1 : 5000 parties de coups légaux au hasard par tranche, longueurs tirées
+dans la distribution de la tranche.
+
 ## Prochaines étapes
 2. Lecture en flux d'un fichier mensuel Lichess (database.lichess.org, accessible), Blitz, tranches de 200 Elo ;
    mesure du temps sur 1000 parties ; traitement de la fin de partie : puits « exit » vs survivants (T_g ≥ T).
