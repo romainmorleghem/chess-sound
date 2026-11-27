@@ -12,25 +12,25 @@ class Strike(Narrated):
         w, V, lab = modes("N")
         i = parse("a1")
         e = np.zeros(64); e[i] = 1
-        kick = Board(0.3).paint(e)
+        kick = Board(0.26).paint(e)
         terms = VGroup(kick, MathTex("=", font_size=40))
         for k in (1, 2, 3):
-            terms.add(VGroup(MathTex(rf"{V[i, k]:+.2f}", font_size=30), Board(0.3).paint(V[:, k])).arrange(DOWN, buff=0.15))
+            terms.add(VGroup(MathTex(rf"{V[i, k]:+.2f}", font_size=30), Board(0.26).paint(V[:, k])).arrange(DOWN, buff=0.12))
             terms.add(MathTex("+", font_size=40))
         terms.add(MathTex(r"\cdots", font_size=40))
-        terms.arrange(RIGHT, buff=0.3).shift(1.2 * UP)
+        terms.arrange(RIGHT, buff=0.3).to_edge(UP, buff=0.8)
         self.say("To play a move, we strike the piece's instrument on the arrival square: a sudden kick to "
                  "one single bead.", FadeIn(kick))
-        f1 = MathTex(r"e_i = \sum_k v_k[i]\; v_k", font_size=42).next_to(terms, DOWN, buff=0.6)
+        f1 = MathTex(r"e_i = \sum_k v_k[i]\; v_k", font_size=42).next_to(terms, DOWN, buff=0.45)
         self.say("Like any shape, this kick is a mix of modes. How much of mode k? Simply v k at that square: "
                  "how much that mode moves there.", FadeIn(terms[1:]), Write(f1),
                  speech=None)
-        f2 = MathTex(r"u(t) = \sum_k \frac{v_k[i]}{\omega_k}\; v_k \,\sin(\omega_k t)", font_size=42).next_to(f1, DOWN, buff=0.4)
+        f2 = MathTex(r"u(t) = \sum_k \frac{v_k[i]}{\omega_k}\; v_k \,\sin(\omega_k t)", font_size=42).next_to(f1, DOWN, buff=0.55).set_x(-2.6)
         self.say("Then each mode rings on its own. Its loudness is v k at the struck square, divided by omega: "
                  "high modes are harder to excite.", Write(f2))
         self.say("So if you strike right on a node of a mode, that note stays silent. It's the same reason a "
                  "guitar plucked exactly in the middle loses half of its harmonics.")
-        f3 = MathTex(r"a_\lambda = \frac{\lVert P_\lambda\, e_i \rVert}{\omega}", font_size=40, color=BAND).next_to(f2, DOWN, buff=0.4)
+        f3 = MathTex(r"a_\lambda = \frac{\lVert P_\lambda\, e_i \rVert}{\omega}", font_size=40, color=BAND).next_to(f1, DOWN, buff=0.55).set_x(3.6)
         self.say("When several modes share a note, we add their energies. That's the length of the kick "
                  "projected onto all of them, which doesn't depend on how we chose the modes.", Write(f3))
         self.play(FadeOut(VGroup(terms, f1, f2, f3)), run_time=0.5)
