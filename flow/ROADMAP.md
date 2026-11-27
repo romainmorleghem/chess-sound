@@ -31,6 +31,24 @@ IC : bootstrap de Poisson sur les parties (R = 200), avec et sans repondération
 cible = mélange moyen des tranches). Témoin 1 : 5000 parties de coups légaux au hasard par tranche, longueurs tirées
 dans la distribution de la tranche.
 
+## Résultats (Blitz, lichess 2026-10, 2 Go : 175 194 parties, 20 000 par tranche, 15 194 pour 2400-2600)
+Validation : continuité exacte sur les données réelles ; Hodge à la précision machine ; test 6 parfait
+(écart entre moitiés = bruit pur : médiane 0,67 / 95e 1,98 ; sd(N/2)/sd(N) = 1,41, sd(N/4)/sd(N) = 2,00).
+- **Localité (test 5)** : Σ|div_fd − div_exacte| / Σ|div_exacte| ≈ 2 à tous les Elo. Les différences finies à 4 voisins
+  ratent déjà un simple pas diagonal (écart 2) ; fou 3,3, tour jusqu'à 3,8. Les échecs ne sont PAS un fluide local à
+  l'échelle 8×8 : toutes les conclusions reposent sur les quantités exactes sur les liens ; le continu = visuels seulement.
+- **Fraction rotationnelle (Hodge)** : ouverture 0,65 (témoin 0,56), légèrement croissante avec l'Elo.
+  Fin de partie : **0,45 (800) -> 0,34 (2400)**, pente −0,072 / 1000 Elo, IC95 [−0,085 ; −0,065] (ECO : [−0,102 ; −0,066]),
+  témoin plat ≈ 0,55. Robuste : correction de biais par produit croisé des moitiés (0,445 -> 0,340), sous-fenêtres fixes
+  60-80 (0,454 -> 0,365) et 80-100 (0,460 -> 0,348). Les forts joueurs ont un écoulement de fin de partie plus « dirigé ».
+- **Entropie des prises** : prises très concentrées dans l'ouverture (3,2-4,0 bits contre 5,3 au hasard), d'autant plus
+  que l'Elo est élevé : −0,53 bit / 1000 Elo (ECO : −0,39) ; l'effet diminue avec la phase (−0,07 au-delà de 60).
+- **Convergence près du roi adverse** : les débutants convergent vers le roi adverse au milieu de partie (10-30 : 0,073
+  à 800 contre 0,038 à 2400 ; témoin 0,045) ; les forts joueurs sont SOUS le hasard. Aucun effet après 60.
+- **Cohérence** : effets minuscules (≤ 0,006) ; non retenu comme résultat.
+- **Activité Σ|J|** : biaisée par le bruit (Σ|·| d'une moyenne bruitée). Fiable en ouverture (plancher de bruit 0,05 pour
+  1,95), NON interprétable après 60 (plancher 0,19-0,27 pour 0,52, et dépendant de l'Elo par le nombre de survivants).
+
 ## Prochaines étapes
 2. Lecture en flux d'un fichier mensuel Lichess (database.lichess.org, accessible), Blitz, tranches de 200 Elo ;
    mesure du temps sur 1000 parties ; traitement de la fin de partie : puits « exit » vs survivants (T_g ≥ T).
