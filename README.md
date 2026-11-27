@@ -36,3 +36,8 @@ cd video && python3 render.py          # aperçu 480p  -> media/video/chess_soun
 python3 render.py -q f                 # final 1080p30 -> media/video/chess_sound_1080p30.mp4
 python3 render.py --only s09           # re-rendre une séquence puis réassembler
 ```
+
+---
+# Projet 2 — L'échiquier comme un fluide (`flow/`)
+Écoulement moyen des pièces selon l'Elo : densité, flux sur les liens, divergence, sources et puits, Hodge.
+Voir `flow/ROADMAP.md`. Tests : `python3 -m pytest -q flow/tests`.
