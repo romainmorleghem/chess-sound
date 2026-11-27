@@ -49,6 +49,15 @@ Validation : continuité exacte sur les données réelles ; Hodge à la précisi
 - **Activité Σ|J|** : biaisée par le bruit (Σ|·| d'une moyenne bruitée). Fiable en ouverture (plancher de bruit 0,05 pour
   1,95), NON interprétable après 60 (plancher 0,19-0,27 pour 0,52, et dépendant de l'Elo par le nombre de survivants).
 
+- **Référentiel « mon camp »** : même résultat, rotationnel fin de partie 0,47 -> 0,36.
+- **Par type de pièce** (fin de partie, « mon camp ») : roi quasi potentiel (0,07-0,10), tours tourbillonnaires (0,70-0,74,
+  sans effet Elo), pions 0,56 -> 0,49 et part d'énergie 40 % -> 30 % : la baisse globale vient surtout des pions.
+- **Laminaire / turbulent** : intensité de turbulence √(1/coh² − 1) ≈ 7-10 à tous les Elo (hasard 10-13) ; spectre
+  d'énergie sur les modes propres du graphe (`src/spectrum.py`, énergie sans biais par moitiés) : gradient en loi de
+  puissance ≈ λ^-2 comme le témoin, rotationnel plat (pas de cascade), sans tendance Elo. Pas de transition
+  laminaire/turbulent : le contraste pertinent est **écoulement potentiel vs tourbillonnaire**. Exploratoire (non
+  pré-enregistré) : part des grands tourbillons au développement 0,17 -> 0,11 avec l'Elo.
+
 ## Prochaines étapes
 2. Lecture en flux d'un fichier mensuel Lichess (database.lichess.org, accessible), Blitz, tranches de 200 Elo ;
    mesure du temps sur 1000 parties ; traitement de la fin de partie : puits « exit » vs survivants (T_g ≥ T).
