@@ -13,6 +13,11 @@
   3. conservation : Σ_x S(x, t) = pièces restantes (comptées indépendamment par les prises) ; sortie = pièces finales.
 - Coût du comptage : 2,6 ms par partie de 80 demi-coups (hors lecture PGN).
 
+## Décisions
+- Données : préfixe du fichier mensuel Blitz Lichess lu en flux, **plafond 2 Go** (on augmentera si les résultats sont bons) ;
+  moins de 20 000 parties acceptées dans les tranches extrêmes.
+- Témoin 2 (moteur / Maia / loi chess-physics) : reporté, plus tard.
+
 ## Prochaines étapes
 2. Lecture en flux d'un fichier mensuel Lichess (database.lichess.org, accessible), Blitz, tranches de 200 Elo ;
    mesure du temps sur 1000 parties ; traitement de la fin de partie : puits « exit » vs survivants (T_g ≥ T).
